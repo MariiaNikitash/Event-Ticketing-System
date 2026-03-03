@@ -1,5 +1,9 @@
 package com.example.event_ticketing_system.repository;
 
-public class OrganizerRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.event_ticketing_system.entity.Organizer;
+
+public interface OrganizerRepository extends JpaRepository<Organizer, Integer> {
     
 }
