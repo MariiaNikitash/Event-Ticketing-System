@@ -24,4 +24,5 @@ public class OrganizerController {
 
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
+
 }

@@ -24,4 +24,5 @@ public class VenueController {
 
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
+
 }
