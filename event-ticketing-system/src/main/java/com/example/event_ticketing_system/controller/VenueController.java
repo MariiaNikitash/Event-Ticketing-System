@@ -9,16 +9,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.event_ticketing_system.entity.Venue;
-import com.example.event_ticketing_system.service.VenueService;
-
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/venues")
 @RequiredArgsConstructor
 public class VenueController {
-
     private final VenueService venueService;
 
     @PostMapping
@@ -28,7 +24,6 @@ public class VenueController {
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 }
-    private final VenueService venueService;
 
     @PostMapping
     public ResponseEntity<Venue> createVenue(@RequestBody Venue venue) {
