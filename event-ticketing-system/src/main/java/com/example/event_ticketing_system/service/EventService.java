@@ -10,6 +10,7 @@ import com.example.event_ticketing_system.repository.OrganizerRepository;
 import com.example.event_ticketing_system.repository.VenueRepository;
 
 import lombok.RequiredArgsConstructor;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,7 @@ public class EventService {
     private final VenueRepository venueRepository;
 
     @Transactional
+
     public EventResponseDTO createEvent(EventRequestDTO dto) {
 
         Organizer organizer = organizerRepository.findById(dto.getOrganizer_id())
@@ -55,5 +57,22 @@ public class EventService {
         response.setVenueName(saved.getVenue().getName());
 
         return response;
+    }
+
+    // Get all events method
+    public List<EventResponseDTO> getAllEvents() {
+        List<Event> events = eventRepository.findAll();
+
+        return events.stream().map(event -> {
+            EventResponseDTO response = new EventResponseDTO();
+            response.setEvent_id(event.getEvent_id());
+            response.setTitle(event.getTitle());
+            response.setDescription(event.getDescription());
+            response.setEvent_date(event.getEvent_date());
+            response.setStatus(event.getStatus().name());
+            response.setOrganizerName(event.getOrganizer().getName());
+            response.setVenueName(event.getVenue().getName());
+            return response;
+        }).toList();
     }
 }

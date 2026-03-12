@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/events")
@@ -17,6 +18,7 @@ public class EventController {
 
     private final EventService eventService;
 
+    // POST /api/events
     @PostMapping
     public ResponseEntity<EventResponseDTO> createEvent(@RequestBody EventRequestDTO dto) {
 
@@ -26,4 +28,16 @@ public class EventController {
                 .status(HttpStatus.CREATED)
                 .body(response);
     }
+
+
+    // GET /api/events
+    @GetMapping
+    public ResponseEntity<List<EventResponseDTO>>getAllEvents() {
+        return ResponseEntity.ok(eventService.getAllEvents());
+    }
+
+    // GET /api/events/{id}
+    //@GetMapping("/{id}")
+
 }
+
