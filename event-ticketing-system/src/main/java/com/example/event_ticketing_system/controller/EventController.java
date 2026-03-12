@@ -37,7 +37,10 @@ public class EventController {
     }
 
     // GET /api/events/{id}
-    //@GetMapping("/{id}")
+    @GetMapping("/{id}")
+    public ResponseEntity<EventResponseDTO> getEventById(@PathVariable Integer id) {
+        return ResponseEntity.ok(eventService.getEventById(id));
+    }
 
 }
 

@@ -75,4 +75,21 @@ public class EventService {
             return response;
         }).toList();
     }
+
+    // Get event by id
+    public EventResponseDTO getEventById(Integer id) {
+        Event event = eventRepository.findById(id).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Event not found"));
+
+        EventResponseDTO response = new EventResponseDTO();
+        response.setEvent_id(event.getEvent_id());
+        response.setTitle(event.getTitle());
+        response.setDescription(event.getDescription());
+        response.setEvent_date(event.getEvent_date());
+        response.setStatus(event.getStatus().name());
+        response.setOrganizerName(event.getOrganizer().getName());
+        response.setVenueName(event.getVenue().getName());
+
+        return response;
+    }
 }
